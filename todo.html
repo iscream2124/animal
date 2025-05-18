@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오늘 할일</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        #taskInput { padding: 8px; width: 200px; }
+        #addTask { padding: 8px 12px; }
+        #taskList { list-style: none; padding: 0; }
+        .taskItem { margin-bottom: 8px; }
+        .completed { text-decoration: line-through; color: gray; }
+    </style>
+</head>
+<body>
+    <h1>오늘 할일</h1>
+    <input type="text" id="taskInput" placeholder="할 일을 입력하세요">
+    <button id="addTask">추가</button>
+    <ul id="taskList"></ul>
+
+    <script>
+        const taskInput = document.getElementById('taskInput');
+        const taskList = document.getElementById('taskList');
+        document.getElementById('addTask').addEventListener('click', () => {
+            const text = taskInput.value.trim();
+            if (text !== '') {
+                const li = document.createElement('li');
+                li.textContent = text;
+                li.className = 'taskItem';
+                li.addEventListener('click', () => {
+                    li.classList.toggle('completed');
+                });
+                taskList.appendChild(li);
+                taskInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
